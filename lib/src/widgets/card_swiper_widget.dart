@@ -11,24 +11,37 @@ class SwiperCards extends StatelessWidget {
   //  el constructor incialize el array de peliculas
 
   @override
+  @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
+
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.only(top: 10.0),
       child: Swiper(
-        itemBuilder: (BuildContext context, int index) => ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              image: NetworkImage(peliculas[index].getPosterImg()),
-              placeholder: AssetImage('assets/images/loading-poster.gif'),
-              fit: BoxFit.cover,
-            )),
-        itemCount: peliculas.length,
-        itemHeight: _screenSize.height * 0.50, // 0.5 = 50% de la pantalla,
-        itemWidth: _screenSize.width * 0.70,
         layout: SwiperLayout.STACK,
-        // pagination: SwiperPagination(),
-        // control: SwiperControl(),
+        itemWidth: _screenSize.width * 0.7,
+        itemHeight: _screenSize.height * 0.5,
+        itemBuilder: (BuildContext context, int index) {
+          peliculas[index].uniqueId = '${peliculas[index].id}-tarjeta';
+
+          return Hero(
+            tag: peliculas[index].uniqueId,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, 'detalle',
+                      arguments: peliculas[index]),
+                  child: FadeInImage(
+                    image: NetworkImage(peliculas[index].getPosterImg()),
+                    placeholder: AssetImage('assets/images/no-image.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                )),
+          );
+        },
+        itemCount: peliculas.length,
+        // pagination: new SwiperPagination(),
+        // control: new SwiperControl(),
       ),
     );
   }

@@ -13,6 +13,7 @@ class Peliculas {
 }
 
 class Pelicula {
+  String uniqueId;
   int voteCount;
   int id;
   bool video;
@@ -70,7 +71,7 @@ class Pelicula {
     }
   }
 
-   getBackgroundImg() {
+  getBackgroundImg() {
     if (posterPath == null) {
       return 'https://sisterhoodofstyle.com/wp-content/uploads/2018/02/no-image-1.jpg';
     } else {

@@ -35,17 +35,22 @@ class MovieHorizontal extends StatelessWidget {
   }
 
   Widget _tarjeta(Pelicula movie, BuildContext context) {
-   final tarjeta =  Container(
+    movie.uniqueId = '${movie.id}-poster';
+
+    final tarjeta = Container(
       margin: EdgeInsets.only(right: 15),
       child: Column(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              image: NetworkImage(movie.getPosterImg()),
-              placeholder: AssetImage('assets/img/no-image.jpg'),
-              fit: BoxFit.cover,
-              height: 160,
+          Hero(
+            tag: movie.uniqueId,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                image: NetworkImage(movie.getPosterImg()),
+                placeholder: AssetImage('assets/images/no-image.jpg'),
+                fit: BoxFit.cover,
+                height: 160,
+              ),
             ),
           ),
           Container(
@@ -62,7 +67,7 @@ class MovieHorizontal extends StatelessWidget {
 
     return GestureDetector(
       child: tarjeta,
-      onTap: () => Navigator.pushNamed(context,'detalle',arguments: movie),
+      onTap: () => Navigator.pushNamed(context, 'detalle', arguments: movie),
     );
   }
 }
