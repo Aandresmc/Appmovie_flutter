@@ -137,7 +137,7 @@ class PeliculaDetalle extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               image: NetworkImage(actor.getFoto()),
-              placeholder: AssetImage('assets/images/no-image.jpg'),
+              placeholder: AssetImage('assets/images/no_image.jpg'),
               height: 150,
               width: 100,
               fit: BoxFit.cover,
