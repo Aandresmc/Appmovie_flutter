@@ -61,6 +61,7 @@ class DataSearch extends SearchDelegate {
     if (query.isEmpty) return Container();
 
     return FutureBuilder(
+      
       future: _peliculasProvider.buscarPelicula(query),
       builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
         if (snapshot.hasData) {
